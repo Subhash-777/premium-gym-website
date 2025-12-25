@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APEX Strength - Premium Fitness Gym</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-black: #0a0a0a;
+            --color-charcoal: #1a1a1a;
+            --color-graphite: #2a2a2a;
+            --color-steel: #3a3a3a;
+            --color-gray-light: #5a5a5a;
+            --color-off-white: #e8e8e8;
+            --color-accent-gold: #b8956a;
+            --color-accent-crimson: #8b3a3a;
+            --color-accent-silver: #7a8a8a;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--color-black);
+            color: var(--color-off-white);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(122, 138, 138, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--color-accent-gold);
+            text-transform: uppercase;
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--color-off-white);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-accent-gold);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .nav-mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-off-white);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 60px;
+            height: 100vh;
+            min-height: 700px;
+            background: linear-gradient(135deg, var(--color-black) 0%, var(--color-charcoal) 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('https://user-gen-media-assets.s3.amazonaws.com/seedream_images/5b6c4854-57b0-4ef6-a72c-42a7a434620c.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.35;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 72px);
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            color: var(--color-off-white);
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--color-gray-light);
+            margin-bottom: 50px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 0;
+        }
+
+        .btn-primary {
+            background-color: var(--color-accent-gold);
+            color: var(--color-black);
+        }
+
+        .btn-primary:hover {
+            background-color: #d4a574;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-off-white);
+            border: 2px solid var(--color-accent-gold);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(184, 149, 106, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* About Section */
+        .section {
+            padding: 100px 0;
+            border-top: 1px solid rgba(122, 138, 138, 0.1);
+        }
+
+        .section-title {
+            font-size: clamp(36px, 6vw, 48px);
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+
+        .about {
+            background-color: var(--color-charcoal);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--color-accent-gold);
+            font-weight: 700;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--color-gray-light);
+            margin-bottom: 15px;
+        }
+
+        .about-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .highlight {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .highlight-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(184, 149, 106, 0.2);
+            border: 1px solid var(--color-accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: 700;
+            color: var(--color-accent-gold);
+        }
+
+        .highlight-text {
+            flex: 1;
+        }
+
+        .highlight-text strong {
+            display: block;
+            color: var(--color-off-white);
+            margin-bottom: 5px;
+        }
+
+        /* Programs Section */
+        .programs {
+            background-color: var(--color-black);
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .program-card {
+            background-color: var(--color-graphite);
+            padding: 40px;
+            border: 1px solid rgba(122, 138, 138, 0.2);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .program-card:hover {
+            border-color: var(--color-accent-gold);
+            transform: translateY(-5px);
+            background-color: var(--color-steel);
+        }
+
+        .program-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(184, 149, 106, 0.15);
+            border: 2px solid var(--color-accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        .program-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .program-card p {
+            color: var(--color-gray-light);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* Why Choose Us */
+        .why-us {
+            background-color: var(--color-charcoal);
+        }
+
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .why-us-item {
+            text-align: center;
+        }
+
+        .why-us-item h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--color-accent-gold);
+            font-weight: 700;
+        }
+
+        .why-us-item p {
+            color: var(--color-gray-light);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* Trainers Section */
+        .trainers {
+            background-color: var(--color-black);
+        }
+
+        .trainers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .trainer-card {
+            background-color: var(--color-graphite);
+            overflow: hidden;
+            border: 1px solid rgba(122, 138, 138, 0.2);
+            transition: var(--transition);
+        }
+
+        .trainer-card:hover {
+            border-color: var(--color-accent-gold);
+            transform: translateY(-8px);
+        }
+
+        .trainer-image {
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(135deg, var(--color-graphite), var(--color-steel));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: rgba(184, 149, 106, 0.3);
+        }
+
+        .trainer-info {
+            padding: 30px;
+        }
+
+        .trainer-card h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .trainer-specialty {
+            color: var(--color-accent-gold);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .trainer-experience {
+            color: var(--color-gray-light);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* Membership Plans */
+        .membership {
+            background-color: var(--color-charcoal);
+        }
+
+        .membership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .membership-card {
+            background-color: var(--color-graphite);
+            padding: 50px 30px;
+            text-align: center;
+            border: 1px solid rgba(122, 138, 138, 0.2);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .membership-card.featured {
+            border: 2px solid var(--color-accent-gold);
+            transform: scale(1.05);
+        }
+
+        .membership-card:hover {
+            border-color: var(--color-accent-gold);
+        }
+
+        .membership-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .membership-price {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--color-accent-gold);
+            margin-bottom: 10px;
+        }
+
+        .membership-period {
+            color: var(--color-gray-light);
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .membership-features {
+            list-style: none;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .membership-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(122, 138, 138, 0.1);
+            color: var(--color-gray-light);
+            font-size: 14px;
+        }
+
+        .membership-features li:last-child {
+            border-bottom: none;
+        }
+
+        .membership-features li::before {
+            content: '✓ ';
+            color: var(--color-accent-gold);
+            font-weight: 700;
+            margin-right: 10px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--color-black);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .testimonial-card {
+            background-color: var(--color-graphite);
+            padding: 40px;
+            border-left: 3px solid var(--color-accent-gold);
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            font-style: italic;
+            color: var(--color-gray-light);
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            background-color: var(--color-steel);
+            border-radius: 50%;
+            border: 1px solid rgba(184, 149, 106, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .testimonial-name {
+            font-weight: 700;
+            color: var(--color-off-white);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .testimonial-role {
+            font-size: 13px;
+            color: var(--color-accent-gold);
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--color-charcoal);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background-color: var(--color-graphite);
+            border: 1px solid rgba(122, 138, 138, 0.3);
+            color: var(--color-off-white);
+            padding: 12px 16px;
+            font-family: inherit;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--color-gray-light);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-accent-gold);
+            background-color: var(--color-steel);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .contact-item h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--color-accent-gold);
+            font-weight: 700;
+        }
+
+        .contact-item p {
+            color: var(--color-gray-light);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            background-color: var(--color-graphite);
+            border: 1px solid rgba(122, 138, 138, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-gray-light);
+            border-radius: 4px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-black);
+            border-top: 1px solid rgba(122, 138, 138, 0.1);
+            padding: 50px 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--color-accent-gold);
+        }
+
+        .footer-section p {
+            color: var(--color-gray-light);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--color-graphite);
+            border: 1px solid rgba(122, 138, 138, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-off-white);
+            transition: var(--transition);
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .social-icon:hover {
+            background-color: var(--color-steel);
+            border-color: var(--color-accent-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(122, 138, 138, 0.1);
+            color: var(--color-gray-light);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .nav-mobile-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .membership-card.featured {
+                transform: scale(1);
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="header-content">
+            <div class="logo">APEX</div>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#programs">Programs</a>
+                <a href="#trainers">Trainers</a>
+                <a href="#membership">Membership</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <button class="nav-mobile-toggle">☰</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Build Strength.<br>Own Discipline.</h1>
+            <p class="hero-subtitle">Where Excellence Meets Dedication</p>
+            <div class="cta-buttons">
+                <button class="btn btn-primary">Join Now</button>
+                <button class="btn btn-secondary">Book Free Trial</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Premium Strength Training</h3>
+                    <p>We believe in transcendence through discipline. APEX is engineered for those who refuse mediocrity and demand more from themselves. Every detail—from our equipment to our coaching—reflects an uncompromising commitment to excellence.</p>
+                    <p>Our philosophy: consistency beats intensity, discipline beats motivation, and results speak louder than promises.</p>
+                    <div class="about-highlights">
+                        <div class="highlight">
+                            <div class="highlight-icon">1</div>
+                            <div class="highlight-text">
+                                <strong>World-Class Facilities</strong>
+                                State-of-the-art equipment curated for maximum performance and longevity.
+                            </div>
+                        </div>
+                        <div class="highlight">
+                            <div class="highlight-icon">2</div>
+                            <div class="highlight-text">
+                                <strong>Expert Guidance</strong>
+                                Certified trainers with years of competitive and coaching experience.
+                            </div>
+                        </div>
+                        <div class="highlight">
+                            <div class="highlight-icon">3</div>
+                            <div class="highlight-text">
+                                <strong>Dedicated Community</strong>
+                                Train alongside individuals who share your commitment to excellence.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="font-size: 120px; text-align: center; color: rgba(184, 149, 106, 0.2);">💪</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="section programs" id="programs">
+        <div class="container">
+            <h2 class="section-title">Training Programs</h2>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-icon">🏋️</div>
+                    <h3>Strength Training</h3>
+                    <p>Progressive overload protocols designed to build functional muscle and raw power. Perfect for those serious about results.</p>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">⚡</div>
+                    <h3>Weight Loss</h3>
+                    <p>Comprehensive approach combining strength training, nutrition guidance, and metabolic conditioning for sustainable transformation.</p>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">🔄</div>
+                    <h3>Cross Training</h3>
+                    <p>Multi-discipline training combining cardio, functional fitness, and strength work for complete athletic development.</p>
+                </div>
+                <div class="program-card">
+                    <div class="program-icon">👤</div>
+                    <h3>Personal Coaching</h3>
+                    <p>One-on-one customized programs tailored to your specific goals, limitations, and lifestyle. Maximum accountability and results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section why-us">
+        <div class="container">
+            <h2 class="section-title">Why Choose APEX</h2>
+            <div class="why-us-grid">
+                <div class="why-us-item">
+                    <h3>Certified Trainers</h3>
+                    <p>NASM, ISSA, and competition-certified coaches with real experience and proven track records.</p>
+                </div>
+                <div class="why-us-item">
+                    <h3>Premium Equipment</h3>
+                    <p>Brands you trust. Machines you'll use. Everything calibrated and maintained to perfection.</p>
+                </div>
+                <div class="why-us-item">
+                    <h3>24/7 Access</h3>
+                    <p>Train on your schedule. Members have round-the-clock access to all facilities and secure entry system.</p>
+                </div>
+                <div class="why-us-item">
+                    <h3>Clean & Professional</h3>
+                    <p>Impeccable standards. Daily deep cleaning. Professional environment that demands respect.</p>
+                </div>
+                <div class="why-us-item">
+                    <h3>Flexible Plans</h3>
+                    <p>Choose your commitment level. No long contracts. No hidden fees. Transparent pricing.</p>
+                </div>
+                <div class="why-us-item">
+                    <h3>Community</h3>
+                    <p>Surround yourself with like-minded individuals. Challenge each other. Grow together.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trainers Section -->
+    <section class="section trainers" id="trainers">
+        <div class="container">
+            <h2 class="section-title">Our Trainers</h2>
+            <div class="trainers-grid">
+                <div class="trainer-card">
+                    <div class="trainer-image">👨‍🏫</div>
+                    <div class="trainer-info">
+                        <h3>Marcus Reid</h3>
+                        <div class="trainer-specialty">Strength & Power</div>
+                        <p class="trainer-experience">NASM-CPT | 12+ years coaching elite athletes | Competitive powerlifter</p>
+                    </div>
+                </div>
+                <div class="trainer-card">
+                    <div class="trainer-image">👩‍🏫</div>
+                    <div class="trainer-info">
+                        <h3>Sarah Chen</h3>
+                        <div class="trainer-specialty">Weight Loss & Conditioning</div>
+                        <p class="trainer-experience">ISSA-CFT | Nutrition specialist | Transformed 500+ clients</p>
+                    </div>
+                </div>
+                <div class="trainer-card">
+                    <div class="trainer-image">👨‍💼</div>
+                    <div class="trainer-info">
+                        <h3>James Wilson</h3>
+                        <div class="trainer-specialty">Rehabilitation & Mobility</div>
+                        <p class="trainer-experience">NASM-PES | Physical therapy background | 8+ years experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Plans -->
+    <section class="section membership" id="membership">
+        <div class="container">
+            <h2 class="section-title">Membership Plans</h2>
+            <div class="membership-grid">
+                <div class="membership-card">
+                    <h3>Essential</h3>
+                    <div class="membership-price">₹4,999</div>
+                    <div class="membership-period">per month</div>
+                    <ul class="membership-features">
+                        <li>Full gym access</li>
+                        <li>Standard equipment</li>
+                        <li>Locker & shower access</li>
+                        <li>Weekday hours: 6am-10pm</li>
+                        <li>Monthly fitness assessment</li>
+                    </ul>
+                    <button class="btn btn-secondary">Get Started</button>
+                </div>
+                <div class="membership-card featured">
+                    <h3>Elite</h3>
+                    <div class="membership-price">₹9,999</div>
+                    <div class="membership-period">per month</div>
+                    <ul class="membership-features">
+                        <li>24/7 gym access</li>
+                        <li>All equipment included</li>
+                        <li>Premium locker</li>
+                        <li>Group classes (5/week)</li>
+                        <li>Monthly 1-on-1 assessment</li>
+                        <li>Nutrition consultation</li>
+                    </ul>
+                    <button class="btn btn-primary">Join Elite</button>
+                </div>
+                <div class="membership-card">
+                    <h3>Premium</h3>
+                    <div class="membership-price">₹14,999</div>
+                    <div class="membership-period">per month</div>
+                    <ul class="membership-features">
+                        <li>24/7 priority access</li>
+                        <li>All Elite benefits</li>
+                        <li>Unlimited classes</li>
+                        <li>4 personal sessions/month</li>
+                        <li>Dedicated trainer</li>
+                        <li>Recovery services</li>
+                    </ul>
+                    <button class="btn btn-secondary">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section testimonials">
+        <div class="container">
+            <h2 class="section-title">Member Testimonials</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"APEX changed my entire relationship with fitness. The discipline here is real. After 8 months, I've never been stronger."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">👨</div>
+                        <div>
+                            <span class="testimonial-name">Arjun Sharma</span>
+                            <span class="testimonial-role">6 months member</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The trainers here actually care. Marcus customized my program and the results speak for themselves. No ego, just results."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">👩</div>
+                        <div>
+                            <span class="testimonial-name">Priya Kapoor</span>
+                            <span class="testimonial-role">1 year member</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Best decision I made for my fitness. The community is supportive, the equipment is top-notch, and the environment is inspiring."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">👨</div>
+                        <div>
+                            <span class="testimonial-name">Vikram Patel</span>
+                            <span class="testimonial-role">8 months member</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" placeholder="Full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="+91 XXXXX XXXXX" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" placeholder="Tell us about your goals..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>Location</h3>
+                        <p>APEX Strength Gym<br>123 Fitness Avenue<br>Chennai, Tamil Nadu 600059<br>India</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Hours</h3>
+                        <p>Monday - Friday: 6:00 AM - 10:00 PM<br>Saturday: 7:00 AM - 9:00 PM<br>Sunday: 7:00 AM - 8:00 PM<br>24/7 access for Elite & Premium members</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Contact</h3>
+                        <p>Phone: +91 44 1234 5678<br>Email: info@apexstrength.com<br>WhatsApp: +91 98765 43210</p>
+                    </div>
+                    <div class="map-container">
+                        📍 Map integration area
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>APEX Strength</h4>
+                    <p>Where discipline meets results. Building stronger bodies and stronger minds through committed training and expert guidance.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">f</a>
+                        <a href="#" class="social-icon">𝕏</a>
+                        <a href="#" class="social-icon">📷</a>
+                        <a href="#" class="social-icon">in</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <p><a href="#about" style="color: var(--color-gray-light); text-decoration: none;">About</a></p>
+                    <p><a href="#programs" style="color: var(--color-gray-light); text-decoration: none;">Programs</a></p>
+                    <p><a href="#membership" style="color: var(--color-gray-light); text-decoration: none;">Membership</a></p>
+                    <p><a href="#contact" style="color: var(--color-gray-light); text-decoration: none;">Contact</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 APEX Strength Gym. All rights reserved. | <a href="#" style="color: var(--color-accent-gold); text-decoration: none;">Privacy Policy</a> | <a href="#" style="color: var(--color-accent-gold); text-decoration: none;">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll behavior handled by CSS
+        // Form submission handler
+        document.querySelector('.contact-form')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you within 24 hours.');
+            e.target.reset();
+        });
+
+        // Mobile menu toggle (placeholder)
+        document.querySelector('.nav-mobile-toggle')?.addEventListener('click', () => {
+            alert('Mobile menu - expand navigation');
+        });
+
+        // Button interactions
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if (btn.tagName !== 'A') {
+                    e.target.style.opacity = '0.8';
+                    setTimeout(() => {
+                        e.target.style.opacity = '1';
+                    }, 200);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
